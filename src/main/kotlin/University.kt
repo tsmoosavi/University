@@ -3,8 +3,6 @@ import kotlin.collections.ArrayList
 
 class Student(    val name: String,
                   val Id : Int){
-
-    var average : Double? = null
     var lessonList : ArrayList<Lesson> = arrayListOf()
     private var gradeList : MutableMap<Lesson,Double> = mutableMapOf()
     fun printLessonList(){
@@ -19,6 +17,17 @@ class Student(    val name: String,
             return
         }
         gradeList[lesson] = grade
+
+    }
+    fun getAverage ():Double{
+        var sum = 0.0
+        for (grade in gradeList){
+            sum+= grade.value
+        }
+
+        return  sum / gradeList.size
+
+
 
     }
 
@@ -51,6 +60,10 @@ fun main(){
     mathLesson.addStudent(mina)
     mathLesson.addStudent(behnam)
     physicsLesson.addStudent(behnam)
+    behnam.addGrade(mathLesson,12.0)
+    behnam.addGrade(physicsLesson, 15.0)
+    println(behnam.getAverage())
+
     var date1 = Date()
     println(date1)
 
